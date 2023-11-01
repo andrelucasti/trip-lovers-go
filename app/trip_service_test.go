@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/andrelucasti/trip-lovers-go/business"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -13,9 +14,11 @@ func TestNewTrip(t *testing.T) {
 		returns:   "2024-03-07",
 	}
 
-	Save(tripRequest)
+	repository := new(business.TripInMemoryRepository)
 
-	trips := FindAll()
+	Save(tripRequest, repository)
+
+	trips := FindAll(repository)
 
 	assert.Contains(t, trips, tripRequest)
 }
