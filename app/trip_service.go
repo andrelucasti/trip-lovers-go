@@ -6,23 +6,23 @@ import (
 )
 
 func Save(tripRequest TripRequest, repository business.TripRepository) {
-	departure, _ := time.Parse(time.DateOnly, tripRequest.departure)
-	returns, _ := time.Parse(time.DateOnly, tripRequest.returns)
+	departure, _ := time.Parse(time.DateOnly, tripRequest.Departure)
+	returns, _ := time.Parse(time.DateOnly, tripRequest.Returns)
 
-	newTrip := business.NewTrip(tripRequest.title, tripRequest.about, departure, returns)
+	newTrip := business.NewTrip(tripRequest.Title, tripRequest.About, departure, returns)
 
 	repository.Save(newTrip)
 }
 
-func FindAll(repository business.TripRepository) []TripRequest {
-	var result []TripRequest
+func FindAll(repository business.TripRepository) []TripResponse {
+	var result []TripResponse
 
 	trips := repository.FindAll()
 
 	for i := 0; i < len(trips); i++ {
 		trip := trips[i]
 
-		result = append(result, TripRequest{
+		result = append(result, TripResponse{
 			trip.Title,
 			trip.About,
 			trip.Departure.Format(time.DateOnly),

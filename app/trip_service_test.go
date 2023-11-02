@@ -20,5 +20,11 @@ func TestNewTrip(t *testing.T) {
 
 	trips := FindAll(repositoryInMemory)
 
-	assert.Contains(t, trips, tripRequest)
+	expected := TripResponse{
+		title:     "My First Travel",
+		about:     "My Golang travel",
+		departure: "2024-03-01",
+		returns:   "2024-03-07",
+	}
+	assert.Contains(t, trips, expected)
 }

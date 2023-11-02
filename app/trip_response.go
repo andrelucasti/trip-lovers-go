@@ -1,6 +1,6 @@
 package app
 
-type TripRequest struct {
+type TripResponse struct {
 	Title     string `json:"title"`
 	About     string `json:"about"`
 	Departure string `json:"departure"`
