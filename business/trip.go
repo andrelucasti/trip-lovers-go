@@ -11,14 +11,16 @@ type Trip struct {
 	About     string
 	Departure time.Time
 	Returns   time.Time
+	IdUser    uuid.UUID
 }
 
-func NewTrip(title string, about string, departure time.Time, returns time.Time) Trip {
+func NewTrip(title string, about string, departure time.Time, returns time.Time, idUser uuid.UUID) Trip {
 	return Trip{
 		uuid.New(),
 		title,
 		about,
 		departure,
 		returns,
+		idUser,
 	}
 }
